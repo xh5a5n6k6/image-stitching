@@ -190,9 +190,9 @@ SIFTDescriptor::solve(
             int descriptorRotateBin = (angle < 22.5f) ?
                                       0 : 1 + int(angle - 22.5f) / 45;
 
-            cv::Mat tmpImage;
+            cv::Mat rotationDescriptorMainOrientation;
             cv::Mat rotation = cv::getRotationMatrix2D(cv::Point2f(x, y), angle, 1);
-            cv::warpAffine(image, tmpImage, rotation, image.size());
+            cv::warpAffine(descriptorMainOrientation, rotationDescriptorMainOrientation, rotation, image.size());
 
             /*
                 There are 16 4x4 size local pixels
@@ -211,7 +211,7 @@ SIFTDescriptor::solve(
                     int beginY = y + yo;
                     for (int j = beginY; j < beginY + 4; j++) {
                         for (int i = beginX; i < beginX + 4; i++) {
-                            int mainBin = descriptorMainOrientation.at<uchar>(j, i);
+                            int mainBin = rotationDescriptorMainOrientation.at<uchar>(j, i);
                             mainBin -= descriptorRotateBin;
                             mainBin = (mainBin + 8) % 8;
 
