@@ -14,7 +14,8 @@ void CylindricalImageWarpper::_warpImpl(
 
     std::cout << "# Begin to warp images using cylindrical projection"
               << std::endl
-              << "\r    Progress of cylindrical warpping: 0/" << images.size();
+              << "\r    Progress of cylindrical warpping: 0/" << images.size()
+              << std::flush;
 
     const std::size_t numImages = images.size();
     out_warpImages->reserve(numImages);
@@ -131,7 +132,8 @@ void CylindricalImageWarpper::_warpImpl(
         out_warpImages->push_back(warpImage);
         out_warpImageIndices->push_back(warpImageIndex);
 
-        std::cout << "\r    Progress of cylindrical warpping: " << (n + 1) << "/" << numImages;
+        std::cout << "\r    Progress of cylindrical warpping: " << (n + 1) << "/" << numImages
+                  << std::flush;
     }
 
     std::cout << std::endl

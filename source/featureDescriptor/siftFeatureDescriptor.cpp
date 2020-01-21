@@ -15,7 +15,8 @@ void SiftFeatureDescriptor::calculate(
 
     std::cout << "# Begin to calculate descriptor vector using SIFT feature descriptor"
               << std::endl
-              << "\r    Progress of calculating feature descriptors: 0/" << images.size();
+              << "\r    Progress of calculating feature descriptors: 0/" << images.size()
+              << std::flush;
 
     const int numImages = static_cast<int>(images.size());
     out_featureDescriptors->reserve(numImages);
@@ -261,7 +262,8 @@ void SiftFeatureDescriptor::calculate(
 
         out_featureDescriptors->push_back(descriptors);
 
-        std::cout << "\r    Progress of calculating feature descriptors: " << (n + 1) << "/" << numImages;
+        std::cout << "\r    Progress of calculating feature descriptors: " << (n + 1) << "/" << numImages
+                  << std::flush;
     }
 
     std::cout << std::endl

@@ -21,7 +21,8 @@ void HarrisFeatureDetector::_detectImpl(
 
     std::cout << "# Begin to detect features using Harris corner detector"
               << std::endl
-              << "\r    Progress of feature detection: 0/" << images.size();
+              << "\r    Progress of feature detection: 0/" << images.size()
+              << std::flush;
        
     const int numImages = static_cast<int>(images.size());
     out_featurePositions->reserve(numImages);
@@ -161,7 +162,8 @@ void HarrisFeatureDetector::_detectImpl(
 
         numAllFeatures += sumFeatures;
 
-        std::cout << "\r    Progress of feature detection: " << (n + 1) << "/" << numImages; 
+        std::cout << "\r    Progress of feature detection: " << (n + 1) << "/" << numImages
+                  << std::flush;
     }
 
     std::cout << std::endl

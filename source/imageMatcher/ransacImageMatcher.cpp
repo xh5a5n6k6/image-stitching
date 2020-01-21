@@ -16,7 +16,8 @@ void RansacImageMatcher::match(
 
     std::cout << "# Begin to match images between image pairs"
               << std::endl
-              << "\r    Progress of image matching: 0/" << featureMatchings.size();
+              << "\r    Progress of image matching: 0/" << featureMatchings.size()
+              << std::flush;
 
     const int numImageMatchings = static_cast<int>(featureMatchings.size());
     out_imageAlignments->reserve(numImageMatchings);
@@ -116,7 +117,8 @@ void RansacImageMatcher::match(
 
         out_imageAlignments->push_back(alignment);
 
-        std::cout << "\r    Progress of image matching: " << (n + 1) << "/" << numImageMatchings;
+        std::cout << "\r    Progress of image matching: " << (n + 1) << "/" << numImageMatchings
+                  << std::flush;
     }
 
     std::cout << std::endl

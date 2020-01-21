@@ -20,7 +20,8 @@ void BruteForceFeatureMatcher::_matchImpl(
 
     std::cout << "# Begin to match features between image pairs"
               << std::endl
-              << "\r    Progress of feature matching: 0/" << (images.size() - 1);
+              << "\r    Progress of feature matching: 0/" << (images.size() - 1)
+              << std::flush;
 
     const int numImages = static_cast<int>(images.size());
     out_featureMatches->reserve(numImages - 1);
@@ -77,7 +78,8 @@ void BruteForceFeatureMatcher::_matchImpl(
 
         out_featureMatches->push_back(matchingIndex);
 
-        std::cout << "\r    Progress of feature matching: " << (n + 1) << "/" << (numImages - 1);
+        std::cout << "\r    Progress of feature matching: " << (n + 1) << "/" << (numImages - 1)
+                  << std::flush;
     }
 
     std::cout << std::endl
