@@ -1,44 +1,46 @@
 #pragma once
 
+#include <memory>
+#include <opencv2/opencv.hpp>
 #include <string>
 #include <vector>
 
-#include <opencv2/opencv.hpp>
-
 namespace sis {
 
-class FeatureDetector;
+class BundleAdjuster;
+class CommandArgument;
 class FeatureDescriptor;
+class FeatureDetector;
+class FeatureMatcher;
+class ImageBlender;
+class ImageMatcher;
+class ImageWarpper;
 
 class ImageStitcher {
 public:
-	ImageStitcher(std::string imageDirectory, std::string focalLengthFilename);
+    ImageStitcher(const CommandArgument& arguments);
 
-	void solve(cv::Mat &dst);
+    ~ImageStitcher();
+
+    void solve(cv::Mat* const out_panorama) const;
 
 private:
-	void _readData(std::string imageDirectory, std::string focalLengthFilename);
-    std::vector<cv::Mat> _cylindricalWarping(std::vector<cv::Mat> &images);
-    std::vector<std::vector<std::pair<int, int> > > 
-    _featureMatching(
-        std::vector<std::vector<cv::Point> > featurePostions,
-        std::vector<std::vector<std::vector<float> > > descriptors);
-    std::vector<cv::Point> _imageMatching(
-        std::vector<std::vector<cv::Point> > featurePostions,
-        std::vector<std::vector<std::pair<int, int> > > matchings);
-    cv::Mat _imageBlending(std::vector<cv::Point> alignments, std::vector<cv::Mat> warpImageIndices);
-    cv::Mat _bundleAdjustment(cv::Mat panorama);
-
-    std::shared_ptr<FeatureDetector> _detector;
-    std::shared_ptr<FeatureDescriptor> _descriptor;
+    void _readData(const std::string& imageDirectory, 
+                   const std::string& focalLengthFilename,
+                   const float        sizeRatio);
 
     // Input images
-    // The order of input photographs needs to be left-to-right
-	std::vector<cv::Mat> _images;
-    std::vector<float> _focalLengths;
+    // The order needs to be LEFT-TO-RIGHT
+    std::vector<cv::Mat> _images;
+    std::vector<float>   _focalLengths;
 
-    // For feature matching threshold
-    float _threshold;
+    std::unique_ptr<ImageWarpper>      _imageWarpper;
+    std::unique_ptr<FeatureDetector>   _featureDetector;
+    std::unique_ptr<FeatureDescriptor> _featureDescriptor;
+    std::unique_ptr<FeatureMatcher>    _featureMatcher;
+    std::unique_ptr<ImageMatcher>      _imageMatcher;
+    std::unique_ptr<ImageBlender>      _imageBlender;
+    std::unique_ptr<BundleAdjuster>    _bundleAdjuster;
 };
 
 } // namespace sis
