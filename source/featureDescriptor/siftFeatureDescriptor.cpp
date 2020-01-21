@@ -198,7 +198,8 @@ void SiftFeatureDescriptor::calculate(
             const int descriptorRotateBin = (angle < 22.5f) ?
                                             0 : 1 + static_cast<int>(angle - 22.5f) / 45;
 
-            const cv::Mat rotationMatrix = cv::getRotationMatrix2D(cv::Point2f(x, y), -angle, 1);
+            const cv::Point2i point(x, y);
+            const cv::Mat rotationMatrix = cv::getRotationMatrix2D(cv::Point2f(point), -angle, 1);
             cv::Mat rotationDescriptorMainOrientation;
             cv::warpAffine(descriptorMainOrientation, rotationDescriptorMainOrientation, rotationMatrix, image.size());
 
