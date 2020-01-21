@@ -79,8 +79,8 @@ inline void FeatureMatcher::_writeImages(
             const cv::Point& point2 = feaPos2[matching.first];
 
             cv::line(concateImage, point1, point2 + cv::Point(images[n].cols, 0), cv::Scalar(0, 255, 0), 2);
-            cv::circle(concateImage, point1, 1, cv::Scalar(0, 0, 255), CV_FILLED);
-            cv::circle(concateImage, point2 + cv::Point(images[n].cols, 0), 1, cv::Scalar(0, 0, 255), CV_FILLED);
+            cv::circle(concateImage, point1, 1, cv::Scalar(0, 0, 255), cv::FILLED);
+            cv::circle(concateImage, point2 + cv::Point(images[n].cols, 0), 1, cv::Scalar(0, 0, 255), cv::FILLED);
         }
 
         char filename[100];

@@ -230,7 +230,7 @@ void ImageStitcher::_readData(const std::string& imageDirectory,
                                  static_cast<int>(image.rows * safeSizeRatio));
 
         cv::Mat resizeImage;
-        cv::resize(image, resizeImage, resizeRes, CV_INTER_LINEAR);
+        cv::resize(image, resizeImage, resizeRes, cv::INTER_LINEAR);
         _images.push_back(resizeImage);
     }
 

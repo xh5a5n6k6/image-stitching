@@ -37,7 +37,7 @@ void HarrisFeatureDetector::_detectImpl(
             Change image to gray scale
         */
         cv::Mat image;
-        cv::cvtColor(images[n], image, CV_BGR2GRAY);
+        cv::cvtColor(images[n], image, cv::COLOR_BGR2GRAY);
         image.convertTo(image, CV_32FC1);
 
         /*

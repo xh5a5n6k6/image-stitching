@@ -54,7 +54,7 @@ inline void FeatureDetector::_writeImages(
 
         cv::Mat tmpImage = images[n].clone();
         for (std::size_t i = 0; i < numFeatures; ++i) {
-            cv::circle(tmpImage, cv::Point(features[i].x, features[i].y), 2, cv::Scalar(0, 0, 255), CV_FILLED);
+            cv::circle(tmpImage, cv::Point(features[i].x, features[i].y), 2, cv::Scalar(0, 0, 255), cv::FILLED);
         }
 
         char filename[100];

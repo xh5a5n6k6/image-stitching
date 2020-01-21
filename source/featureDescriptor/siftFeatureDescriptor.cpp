@@ -45,7 +45,7 @@ void SiftFeatureDescriptor::calculate(
             Change image to gray scale
         */
         cv::Mat image;
-        cv::cvtColor(images[n], image, CV_BGR2GRAY);
+        cv::cvtColor(images[n], image, cv::COLOR_BGR2GRAY);
         image.convertTo(image, CV_32FC1);
 
         /*
@@ -92,7 +92,7 @@ void SiftFeatureDescriptor::calculate(
             binIndex[i]    = cv::Mat::zeros(image.size(), CV_32FC1);
             orientation[i] = cv::Mat::zeros(image.size(), CV_32FC1);
         }
-
+        
         /*
             For SIFT local descriptor, it uses 8 orientations.
             It may different from previous BIN_NUMBER, so we 
