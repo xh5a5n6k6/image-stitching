@@ -121,7 +121,8 @@ Options:
                    <perspective>
 
                    default: <perspective>
-    )";
+)";
+
 }
 
 } // namespace sis
