@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
         return EXIT_SUCCESS;
     }
 
-    std::cout << "Image-Stitching, copyright (c)2019-2020 Chia-Yu, Chou\n"
+    std::cout << "Image-Stitching, copyright (c)2019-2020 Chia-Yu Chou\n"
               << std::endl;
 
     cv::Mat panorama;

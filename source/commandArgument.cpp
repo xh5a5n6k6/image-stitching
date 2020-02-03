@@ -64,7 +64,7 @@ bool CommandArgument::isHelpMessageRequested() const {
 }
 
 void CommandArgument::printHelpMessage() const {
-    std::cout << R"(Image-Stitching, copyright (c)2019-2020 Chia-Yu, Chou
+    std::cout << R"(Image-Stitching, copyright (c)2019-2020 Chia-Yu Chou
 
 [<options>] <images directory path> <focal length file path>
 
